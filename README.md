@@ -36,23 +36,24 @@ Yahooニュースからスクレイピングしてきたニュース記事のタ
   <dt> Trainer.py：</dt>
     <dd>ニューラルネットワークを用いて予測モデルを生成するプログラムです。実行後、「model」フォルダが生成され、その中にモデルがNETファイルで保存されます。</dd>
   <dt> Vectorizer.py：</dt>
-    <dd>Doc2Vecを利用してニュース記事をベクトル化するプログラムです。結果はPKLファイルで保存されます。実行の際は</dd>
+    <dd>Doc2Vecを利用してニュース記事をベクトル化するプログラムです。結果はPKLファイルで保存されます。実行の際はこのファイルと同じディレクトリにダウンロードしたDoc2Vecモデルを解凍して展開し、「ここにDoc2Vecのモデルファイル名を入力(拡張子は.model)」の箇所をそのDoc2Vecモデルファイル(拡張子.model)に書き換えて下さい。</dd>
 </dl>
 
 ## ＜このプログラムで使用しているDoc2Vecモデルについて＞
 　 このプログラムはニュース記事タイトルをベクトル化するため、奥田 裕樹 様のDoc2Vecモデル「dbow300d」を利用しています。  
 　 日本語Wikipediaで学習したdoc2vecモデル - Out-of-the-box  
   URL：https://yag-ays.github.io/project/pretrained_doc2vec_wikipedia/  
-　 Doc2Vecモデルのダウンロードページ：URL：https://www.dropbox.com/s/j75s0eq4eeuyt5n/jawiki.doc2vec.dbow300d.tar.bz2?dl=0  
-　 このDoc2Vecモデルは「CC-BY-SA: Creative Commons Attribution-ShareAlike License」でライセンスされています。  
+　 Doc2Vecモデルのダウンロードページ：  
+  URL：https://www.dropbox.com/s/j75s0eq4eeuyt5n/jawiki.doc2vec.dbow300d.tar.bz2?dl=0  
+このDoc2Vecモデルは「CC-BY-SA: Creative Commons Attribution-ShareAlike License」でライセンスされています。  
    ライセンスの詳細につきましてはこちらのサイトをご覧下さい。      
-　 Creative Commons — Attribution-ShareAlike 3.0 Unported — CC BY-SA 3.0  
+Creative Commons — Attribution-ShareAlike 3.0 Unported — CC BY-SA 3.0  
    URL：https://creativecommons.org/licenses/by-sa/3.0/    
 　 Doc2Vecモデル自体の著作権表示は以下になります。  
 　 Copyright © 2018 yag_ays
 
 ## ＜ライセンス＞
-   このプログラムはCC BY-SA 3.0で提供されています。使用の際は以下のサイトをご覧いただき、ライセンスに従ってご利用下さい。  
+   このプログラムはCC BY-SA 3.0で提供されています。以下のサイトをご覧いただき、ライセンスに従ってご利用下さい。  
    Creative Commons — Attribution-ShareAlike 3.0 Unported — CC BY-SA 3.0  
    URL：https://creativecommons.org/licenses/by-sa/3.0/
 
@@ -89,4 +90,4 @@ main/loss: 2.0007363855838776
   これは __＜考察＞__ の1.に対応したもので、発想としては「タイトルだけでは足りないのだから、本文も合わせて学習させれば上手くいくのではないか」ということです。しかし、Yahooニュース記事本文のスクレイピングは難易度が高く(本文をスクレイピングするには、タイトルが並んでいるページから、更に2回リンクをたどらなければならない)、現時点では無理かなと思っています。
 
   2. ニュースの件数が少ないジャンルに関してスクレイピングを行い、ジャンルごとのニュース件数のバラツキを減らす  
-  これは __＜考察＞__ の2.に対応したもので、ジャンルごとの偏りをなくすことでニュースの件数が多いジャンルに出力結果が偏るのをなくそうということです。しかし、Yahooニュース側の更新を待たなければならないので、時間がかかってしまいます。
+  これは __＜考察＞__ の2.に対応したもので、ジャンルごとの偏りをなくすことでニュースの件数が多いジャンルに出力結果が偏るのをなくそうということです。しかし、Yahooニュース側の更新を待たなければならないので、時間がかかりそうです。
