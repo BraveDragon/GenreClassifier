@@ -41,7 +41,7 @@ Yahooニュースからスクレイピングしてきたニュース記事のタ
 
 ## ＜このプログラムで使用しているDoc2Vecモデルについて＞
 　 このプログラムはニュース記事タイトルをベクトル化するため、奥田 裕樹 様のDoc2Vecモデル「dbow300d」を利用しています。  
-　 日本語Wikipediaで学習したdoc2vecモデル - Out-of-the-box
+　 日本語Wikipediaで学習したdoc2vecモデル - Out-of-the-box  
   URL：https://yag-ays.github.io/project/pretrained_doc2vec_wikipedia/  
 　 Doc2Vecモデルのダウンロードページ：URL：https://www.dropbox.com/s/j75s0eq4eeuyt5n/jawiki.doc2vec.dbow300d.tar.bz2?dl=0  
 　 このDoc2Vecモデルは「CC-BY-SA: Creative Commons Attribution-ShareAlike License」でライセンスされています。  
