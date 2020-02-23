@@ -40,16 +40,16 @@ Yahooニュースからスクレイピングしてきたニュース記事のタ
 </dl>
 
 ## ＜このプログラムで使用しているDoc2Vecモデルについて＞
-　 このプログラムはニュース記事タイトルをベクトル化するため、奥田 裕樹 様のDoc2Vecモデル「dbow300d」を利用しています。  
-　 日本語Wikipediaで学習したdoc2vecモデル - Out-of-the-box  
+このプログラムはニュース記事タイトルをベクトル化するため、奥田 裕樹 様のDoc2Vecモデル「dbow300d」を利用しています。  
+日本語Wikipediaで学習したdoc2vecモデル - Out-of-the-box  
   URL：https://yag-ays.github.io/project/pretrained_doc2vec_wikipedia/  
-　 Doc2Vecモデルのダウンロードページ：  
+Doc2Vecモデルのダウンロードページ：  
   URL：https://www.dropbox.com/s/j75s0eq4eeuyt5n/jawiki.doc2vec.dbow300d.tar.bz2?dl=0  
 このDoc2Vecモデルは「CC-BY-SA: Creative Commons Attribution-ShareAlike License」でライセンスされています。  
-   ライセンスの詳細につきましてはこちらのサイトをご覧下さい。      
+ライセンスの詳細につきましてはこちらのサイトをご覧下さい。      
 Creative Commons — Attribution-ShareAlike 3.0 Unported — CC BY-SA 3.0  
    URL：https://creativecommons.org/licenses/by-sa/3.0/    
-　 Doc2Vecモデル自体の著作権表示は以下になります。  
+Doc2Vecモデル自体の著作権表示は以下になります。  
 　 Copyright © 2018 yag_ays
 
 ## ＜ライセンス＞
@@ -75,8 +75,8 @@ main/loss: 2.0007363855838776
 
 思ったような成果を上げられませんでした。
 
-## ＜考察＞
-　今回、私が思うような精度を実現できなかったのは以下のような原因が考えられます。
+## ＜考察＞  
+今回、私が思うような精度を実現できなかったのは以下のような原因が考えられます。
   1. タイトルだけでは入力の情報量としては足りなかった  
   今回、予測モデルの入力としてニュースのタイトルを利用していましたが、それでは情報不足だったのかもしれないと思いました。よく似たタイトル名の記事が別のジャンルに分類されていたりしたので、それが原因でジャンルの分類が上手くいかなかった可能性があります。
        
