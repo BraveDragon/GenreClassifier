@@ -1,6 +1,4 @@
 # coding:"utf_8"
-import sys
-import PreProcesser
 import numpy as np
 import pickle
 import chainer
@@ -11,7 +9,7 @@ from chainer import training
 from chainer.optimizer_hooks.weight_decay import WeightDecay
 
 #PKLファイルを指定して読み込む
-filename = input(u'ファイル名を入力してください。')
+filename = "news.pkl"
 titletokens_vectorized = []
 Categories = []
 

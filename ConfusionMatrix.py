@@ -1,6 +1,5 @@
 # coding:"utf_8"
 import Trainer
-import PreProcesser
 import pickle
 import chainer
 import chainer.links as L
@@ -17,11 +16,11 @@ science_news = []
 local_news = []
 
 #PKLファイルを指定して読み込む
-filename = input(u'ファイル名を入力してください。')
+filename = "news.pkl"
 titletokens_vectorized = []
 Categories = []
 
-model = L.Classifier(Trainer3.nn)
+model = L.Classifier(Trainer.nn)
 #chainerのモデルを読み込む
 chainer.serializers.load_npz("model/model.net",model)
 print(" I read the chainer model.")

@@ -1,10 +1,7 @@
 # coding:"utf_8"
 #前処理用の関数をまとめる
-import sys
 import MeCab
 import pandas as pd
-import pprint
-import numpy as np
 
 tagger = MeCab.Tagger("-Owakati")
 

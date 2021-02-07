@@ -1,5 +1,4 @@
 # coding:"utf_8"
-import sys
 import PreProcesser
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
