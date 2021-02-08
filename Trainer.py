@@ -7,22 +7,6 @@ import chainer.links as L
 from chainer.training import extensions
 from chainer import training
 from chainer.optimizer_hooks.weight_decay import WeightDecay
-
-#PKLファイルを指定して読み込む
-filename = "news.pkl"
-titletokens_vectorized = []
-Categories = []
-
-with open(filename,mode="rb") as f:
-    articles = pickle.load(f)
-    titletokens_vectorized = articles.news
-    Categories = articles.category
-
-
-x = np.array(titletokens_vectorized).astype('f')
-t = np.array(Categories).astype('i')
-InputDim = x.shape[1]
-
 class NN(chainer.Chain):
     
     def __init__(self, *n_units, n_out = 8):
@@ -57,41 +41,64 @@ class NN(chainer.Chain):
 
         return h
 
+#PKLファイルを指定して読み込む
+filename = "news.pkl"
+titletokens_vectorized = []
+Categories = []
 
-np.random.seed(0)
+with open(filename,mode="rb") as f:
+    articles = pickle.load(f)
+    titletokens_vectorized = articles.news
+    Categories = articles.category
+
+x = np.array(titletokens_vectorized).astype('f')
+t = np.array(Categories).astype('i')
+InputDim = x.shape[1]
 
 nn = NN(InputDim,200,100,n_out=8)
-model = L.Classifier(nn)
 
-dataset = list(zip(x,t))
-n_train = int(len(dataset)*0.7)
-train, test = chainer.datasets.split_dataset_random(dataset, n_train, seed=0)
+def main():
+    global nn
+    global x
+    global t
+    global InputDim
+    
+    np.random.seed(0)
 
-optimizer = chainer.optimizers.Adam()
-optimizer.setup(model)
+    model = L.Classifier(nn)
 
-for param in nn.params():
-    if param.name != 'b':
-        param.update_rule.add_hook(WeightDecay(0.005))
+    dataset = list(zip(x,t))
+    n_train = int(len(dataset)*0.7)
+    train, test = chainer.datasets.split_dataset_random(dataset, n_train, seed=0)
 
-batch_size = 100
-train_iter = chainer.iterators.SerialIterator(train, batch_size)
-test_iter = chainer.iterators.SerialIterator(test, batch_size, repeat=False, shuffle=False)
+    optimizer = chainer.optimizers.Adam()
+    optimizer.setup(model)
 
-updater = training.StandardUpdater(train_iter, optimizer, device=-1)
+    for param in nn.params():
+        if param.name != 'b':
+            param.update_rule.add_hook(WeightDecay(0.005))
 
-epoch = 100
+    batch_size = 100
+    train_iter = chainer.iterators.SerialIterator(train, batch_size)
+    test_iter = chainer.iterators.SerialIterator(test, batch_size, repeat=False, shuffle=False)
 
-trainer = training.Trainer(updater, (epoch, 'epoch'), out='result/genre')
+    updater = training.StandardUpdater(train_iter, optimizer, device=-1)
 
-trainer.extend(extensions.Evaluator(test_iter, model, device=-1))
+    epoch = 100
 
-trainer.extend(extensions.LogReport(trigger=(1, 'epoch')))
+    trainer = training.Trainer(updater, (epoch, 'epoch'), out='result/genre')
 
-trainer.extend(extensions.PrintReport(['epoch','main/accuracy','validation/main/accuracy',
-                                       'main/loss','validation/main/loss','elapsed_time']),trigger=(1,'epoch'))
+    trainer.extend(extensions.Evaluator(test_iter, model, device=-1))
 
-trainer.run()
+    trainer.extend(extensions.LogReport(trigger=(1, 'epoch')))
 
-#学習したモデルを保存
-chainer.serializers.save_npz("model/model.net", model)
+    trainer.extend(extensions.PrintReport(['epoch','main/accuracy','validation/main/accuracy',
+                                           'main/loss','validation/main/loss','elapsed_time']),trigger=(1,'epoch'))
+
+    trainer.run()
+
+    #学習したモデルを保存
+    chainer.serializers.save_npz("model/model.net", model)
+
+if __name__ == "__main__":
+    main()
